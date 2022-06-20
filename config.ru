@@ -1,11 +1,13 @@
 require 'sinatra'
-require 'json'
+require_relative "./config/environment"
 
 class App < Sinatra::Base
+  set :default_content_type, 'application/json'
 
   get '/' do
-    user1 = User.create(name: "Alex")
-    {name: user1.name}.to_json
+    data = Game.all
+    data.to_json
+    # {message: "hello"}.to_json
   end
   
 end
