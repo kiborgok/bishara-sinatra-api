@@ -20,6 +20,9 @@ gem "rake"
 # https://github.com/sparklemotion/sqlite3-ruby
 gem "sqlite3", "~> 1.4"
 
+# Provides functionality to interact with a postgres database
+gem 'pg'
+
 # Require all files in a folder
 # https://github.com/jarmo/require_all
 gem "require_all"
