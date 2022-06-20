@@ -19,6 +19,9 @@ gem "rake"
 # Provides functionality to interact with a postgres database
 gem 'pg'
 
+# a web server
+gem 'puma'
+
 # Require all files in a folder
 # https://github.com/jarmo/require_all
 gem "require_all"
