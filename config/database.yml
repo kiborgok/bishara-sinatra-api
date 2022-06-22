@@ -11,11 +11,11 @@ default: &default
 
 development:
   <<: *default
-  url: "postgresql://postgres:postgres@localhost:5432/sinatra"
+  url: "postgresql://postgres:postgres@localhost:5432/biashara"
 
 test:
   <<: *default
-  url: "postgresql://postgres:postgres@localhost:5432/test_sinatra"
+  url: "postgresql://postgres:postgres@localhost:5432/test_biashara"
 
 production:
   <<: *default
