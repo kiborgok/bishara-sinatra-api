@@ -1,15 +1,15 @@
-require 'sinatra'
 require_relative "./config/environment"
 
-class App < Sinatra::Base
-  set :default_content_type, 'application/json'
-
-  get '/' do
-    Category.create(name: "Manufacturing")
-    data = Category.all
-    data.to_json
+# Allow CORS (Cross-Origin Resource Sharing) requests
+use Rack::Cors do
+  allow do
+    origins '*' # allow requests from ALL frontend origins (if you deploy your application, change this to only allow requests from YOUR frontend origin)
+    resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options, :head]
   end
-  
 end
 
-run App
+# Parse JSON from the request body into the params hash
+use Rack::JSONBodyParser
+
+# Our application
+run ApplicationController
