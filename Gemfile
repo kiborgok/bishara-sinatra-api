@@ -42,7 +42,7 @@ group :development do
 
   # Auto-reload the server when files are changed
   # https://github.com/alexch/rerun
-  gem "rerun"
+  # gem "rerun"
 
   gem "pry"
 end
