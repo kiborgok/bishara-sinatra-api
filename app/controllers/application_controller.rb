@@ -2,10 +2,8 @@ require 'sinatra'
 
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
-  enable :sessions
 
   get '/api/v1/categories' do
-    # response.headers['sessions'] = session
     data = Category.all
     data.to_json
   end
@@ -167,15 +165,5 @@ class ApplicationController < Sinatra::Base
     reviews = Review.all()
     reviews.to_json
   end
-
-  # post '/api/v1/reviews' do
-  #   review = Review.create(
-  #     comment: params[:comment],
-  #     rate: params[:rate],
-  #     user_id: params[:user_id],
-  #     business_id: params[:business_id]
-  #   )
-  #   review.to_json
-  # end
 
 end
