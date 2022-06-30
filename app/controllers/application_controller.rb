@@ -13,11 +13,11 @@ class ApplicationController < Sinatra::Base
     data.to_json
   end
 
-  post '/api/v1/businesses/search' do
-    sub_str = params[:search]
-    result = Business.where("name LIKE ?", "%" + sub_str + "%")
-    result.to_json
-  end
+  # post '/api/v1/businesses/search' do
+  #   sub_str = params[:search]
+  #   result = Business.where("name LIKE ?", "%" + sub_str + "%")
+  #   result.to_json
+  # end
 
   post '/api/v1/businesses' do
     business = Business.create(
@@ -45,11 +45,6 @@ class ApplicationController < Sinatra::Base
       }
     end
     businesses.to_json
-  end
-
-  get '/api/v1/users' do
-    data = User.all
-    data.to_json
   end
 
   post '/api/v1/signin' do
@@ -132,20 +127,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post '/api/v1/users/:user_id' do
-    user = User.find_by_id(params[:user_id])
-    if user
-      user.to_json
-    else
-      {"success": false}.to_json
-    end
-  end
-
-  get '/api/v1/users/:user_id/reviews' do
-    user = User.find_by_id(params[:user_id])
-    user.reviews.to_json
-  end
-
   post '/api/v1/reviews/:user_id/:business_id' do
     review = Review.create(
       comment: params[:comment],
@@ -156,13 +137,20 @@ class ApplicationController < Sinatra::Base
     review.to_json
   end
 
-  get '/api/v1/businesses/:business_id/reviews' do
-    business = Business.find_by_id(params[:business_id])
-    business.users.to_json
-  end
-
   get '/api/v1/reviews' do
-    reviews = Review.all()
+    reviews = Review.all().map do |review|
+      {
+        id: review[:id],
+        comment: review[:comment],
+        rate: review[:rate],
+        user_id: review[:user_id],
+        business_id: review[:business_id],
+        created_at: review[:created_at],
+        updated_at: review[:updated_at],
+        user: review.user
+      }
+    end
+
     reviews.to_json
   end
 
