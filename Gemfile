@@ -30,6 +30,9 @@ gem 'pg'
 # a web server
 gem 'puma'
 
+# jsonwebtoken
+gem 'jwt'
+
 # Require all files in a folder
 # https://github.com/jarmo/require_all
 gem "require_all"
