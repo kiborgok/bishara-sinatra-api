@@ -10,10 +10,6 @@ development:
   <<: *default
   url: "postgresql://<database_user>:<database_password>@localhost:5432/<database_name>"
 
-test:
-  <<: *default
-  url: "postgresql://postgres:postgres@localhost:5432/test_biashara"
-
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
