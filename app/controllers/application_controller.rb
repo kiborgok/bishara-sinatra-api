@@ -86,6 +86,8 @@ class ApplicationController < Sinatra::Base
       return {statusCode: 400, message: "Please fill in all the fields"}.to_json
     elsif User.find_by(email: params[:email])
       return {statusCode: 409, message: "User #{params[:email]} already exists."}.to_json
+    elsif params[:password].length < 6
+      return {statusCode: 409, message: "Password must be atleast 6 characters."}.to_json
     end
     user = User.create(
       first_name: params[:first_name],
