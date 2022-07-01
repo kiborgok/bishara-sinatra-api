@@ -47,6 +47,15 @@ class ApplicationController < Sinatra::Base
     businesses.to_json
   end
 
+  delete '/api/v1/businesses/:business_id' do
+    business = Business.find_by(id: params[:business_id])
+    if !business
+      {message: "Business does not exist"}
+    else
+      business.destroy
+    end
+  end
+
   post '/api/v1/signin' do
     if params[:email].empty? || params[:password].empty?
       return {statusCode: 400, message: "Please fill in all the fields"}.to_json
