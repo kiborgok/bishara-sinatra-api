@@ -3,6 +3,13 @@ require 'sinatra'
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
 
+  get '/' do
+      {
+        "businesses": "https://biashara-api.herokuapp.com/api/v1/business",
+        "categories": "https://biashara-api.herokuapp.com/api/v1/categories",
+      }.to_json
+  end
+
   get '/api/v1/categories' do
     data = Category.all
     data.to_json
